@@ -4,6 +4,9 @@ package com.votacao.sistemavotacao.service;
 import com.votacao.sistemavotacao.SistemaVotacaoApplication;
 import com.votacao.sistemavotacao.domain.AssociadoDTO;
 import com.votacao.sistemavotacao.infra.repository.AssociadoRepository;
+import com.votacao.sistemavotacao.infra.repository.PautaRepository;
+import com.votacao.sistemavotacao.infra.repository.SessaoRepository;
+import com.votacao.sistemavotacao.infra.repository.VotoRepository;
 import com.votacao.sistemavotacao.infra.service.AssociadoService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -25,11 +28,20 @@ public class AssociadoServiceTest {
     @Autowired
     private AssociadoRepository associadoRepository;
     @Autowired
+    private PautaRepository pautaRepository;
+    @Autowired
+    private SessaoRepository sessaoRepository;
+    @Autowired
+    private VotoRepository votoRepository;
+    @Autowired
     private AssociadoService service;
 
     @BeforeEach
     void clearDatabase() {
+        votoRepository.deleteAll();
+        pautaRepository.deleteAll();
         associadoRepository.deleteAll();
+        sessaoRepository.deleteAll();
     }
 
     @Test

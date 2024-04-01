@@ -6,7 +6,10 @@ import com.votacao.sistemavotacao.domain.PautaDTO;
 import com.votacao.sistemavotacao.domain.SessaoDTO;
 import com.votacao.sistemavotacao.infra.entity.PautaEntity;
 import com.votacao.sistemavotacao.infra.entity.SessaoEntity;
+import com.votacao.sistemavotacao.infra.repository.AssociadoRepository;
+import com.votacao.sistemavotacao.infra.repository.PautaRepository;
 import com.votacao.sistemavotacao.infra.repository.SessaoRepository;
+import com.votacao.sistemavotacao.infra.repository.VotoRepository;
 import com.votacao.sistemavotacao.infra.service.PautaService;
 import com.votacao.sistemavotacao.infra.service.SessaoService;
 import org.junit.jupiter.api.BeforeEach;
@@ -30,6 +33,12 @@ public class SessaoServiceTest {
     @Autowired
     private SessaoRepository repository;
     @Autowired
+    private PautaRepository pautaRepository;
+    @Autowired
+    private AssociadoRepository associadoRepository;
+    @Autowired
+    private VotoRepository votoRepository;
+    @Autowired
     private PautaService pautaService;
     @Autowired
     private SessaoService sessaoService;
@@ -38,6 +47,9 @@ public class SessaoServiceTest {
 
     @BeforeEach
     void clearDatabase() {
+        votoRepository.deleteAll();
+        pautaRepository.deleteAll();
+        associadoRepository.deleteAll();
         repository.deleteAll();
     }
 

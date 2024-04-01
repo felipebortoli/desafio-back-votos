@@ -23,7 +23,7 @@ public class PautaEntity {
     @ManyToOne
     private SessaoEntity sessao;
 
-    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(fetch = FetchType.LAZY,cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
     @JoinTable(
             name = "pauta_associados",
             joinColumns = @JoinColumn(name = "pauta_id"),

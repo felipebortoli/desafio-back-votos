@@ -5,6 +5,9 @@ import com.votacao.sistemavotacao.SistemaVotacaoApplication;
 import com.votacao.sistemavotacao.domain.*;
 import com.votacao.sistemavotacao.infra.entity.PautaEntity;
 import com.votacao.sistemavotacao.infra.entity.SessaoEntity;
+import com.votacao.sistemavotacao.infra.repository.AssociadoRepository;
+import com.votacao.sistemavotacao.infra.repository.PautaRepository;
+import com.votacao.sistemavotacao.infra.repository.SessaoRepository;
 import com.votacao.sistemavotacao.infra.repository.VotoRepository;
 import com.votacao.sistemavotacao.infra.service.*;
 import org.junit.jupiter.api.BeforeEach;
@@ -31,7 +34,13 @@ import static org.junit.jupiter.api.Assertions.*;
 public class VotoServiceTest {
 
     @Autowired
-    private VotoRepository repository;
+    private VotoRepository votoRepository;
+    @Autowired
+    private AssociadoRepository associadoRepository;
+    @Autowired
+    private PautaRepository pautaRepository;
+    @Autowired
+    private SessaoRepository sessaoRepository;
     @Autowired
     private PautaService pautaService;
     @Autowired
@@ -44,7 +53,10 @@ public class VotoServiceTest {
     @BeforeEach
     void clearDatabase() {
         MockitoAnnotations.initMocks(this);
-        repository.deleteAll();
+        votoRepository.deleteAll();
+        pautaRepository.deleteAll();
+        associadoRepository.deleteAll();
+        sessaoRepository.deleteAll();
     }
 
     @Test
